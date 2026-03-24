@@ -1,0 +1,19 @@
+{
+    "name": "Rust Dev",
+    "image": "rust:latest",
+    "workspaceFolder": "/workspaces/mi_proyecto",
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "rust-lang.rust-analyzer"
+            ],
+            "settings": {
+                "terminal.integrated.shell.linux": "/bin/bash"
+            }
+        }
+    },
+    "remoteEnv": {
+        "GITHUB_TOKEN": ""
+    },
+    "postCreateCommand": "cd app && cargo build"
+}
