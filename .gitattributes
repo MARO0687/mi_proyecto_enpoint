@@ -1,0 +1,16 @@
+# Forzar LF en todos los archivos de texto
+* text=auto eol=lf
+
+# Ignorar binarios (no tocar saltos de línea)
+*.exe binary
+*.pdb binary
+*.dll binary
+
+# Scripts y configuraciones siempre con LF
+*.sh text eol=lf
+*.yml text eol=lf
+*.toml text eol=lf
+*.rs text eol=lf
+*.lock text eol=lf
+*.json text eol=lf
+*.gitignore text eol=lf
