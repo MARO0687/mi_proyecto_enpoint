@@ -1,0 +1,13 @@
+{% extends "base.html" %} {% block title %}Info{% endblock %} {% block content
+%}
+<div class="container mt-4">
+  <h2 class="mb-4">Información del Sistema</h2>
+  <div class="card shadow">
+    <div class="card-body">
+      <p><strong>User Agent:</strong> {{ data.user_agent }}</p>
+      <p><strong>Hora:</strong> {{ data.time }}</p>
+      <p><strong>Nombre:</strong> {{ data.name }}</p>
+    </div>
+  </div>
+</div>
+{% endblock %}

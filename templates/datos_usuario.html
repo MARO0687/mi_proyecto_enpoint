@@ -1,0 +1,29 @@
+{% extends "base.html" %} {% block title %}Datos Usuario{% endblock %} {% block
+content %}
+<div class="container mt-4">
+  <h2 class="mb-4">Perfil del Usuario</h2>
+
+  {% if error %}
+  <div class="alert alert-danger"><strong>Error:</strong> {{ error }}</div>
+  {% endif %} {% if data %}
+  <div class="card shadow">
+    <div class="card-body">
+      <img
+        src="{{ data.avatar_url }}"
+        alt="Avatar"
+        class="img-thumbnail mb-3"
+        width="120"
+      />
+      <h5 class="card-title">{{ data.name or data.login }}</h5>
+      <p><strong>Login:</strong> {{ data.login }}</p>
+      <p><strong>Ubicación:</strong> {{ data.location }}</p>
+      <p><strong>Compañía:</strong> {{ data.company }}</p>
+      <p><strong>Bio:</strong> {{ data.bio }}</p>
+      <a href="{{ data.html_url }}" target="_blank" class="btn btn-primary"
+        >Ver en GitHub</a
+      >
+    </div>
+  </div>
+  {% endif %}
+</div>
+{% endblock %}

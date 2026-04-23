@@ -1,0 +1,174 @@
+:root {
+  --bg-body: #f8fafc;
+  --text-main: #0f172a;
+  --text-muted: #64748b;
+  --card-bg: #ffffff;
+  --accent-primary: #2563eb;
+  --nav-bg: rgba(255, 255, 255, 0.8);
+  --transition-speed: 0.4s;
+}
+
+body.dark-mode {
+  --bg-body: #09090b;
+  --text-main: #f8fafc;
+  --text-muted: #94a3b8;
+  --card-bg: #18181b;
+  --nav-bg: rgba(9, 9, 11, 0.8);
+}
+
+body {
+  background-color: var(--bg-body);
+  color: var(--text-main);
+  transition:
+    background-color var(--transition-speed),
+    color var(--transition-speed);
+  min-height: 100vh;
+  font-family:
+    "Inter",
+    system-ui,
+    -apple-system,
+    sans-serif;
+}
+
+.navbar {
+  background: var(--nav-bg) !important;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: background var(--transition-speed);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.navbar-brand {
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  color: var(--accent-primary) !important;
+}
+
+.nav-link {
+  color: var(--text-muted) !important;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+.nav-link:hover {
+  color: var(--accent-primary) !important;
+}
+
+.card {
+  background-color: var(--card-bg);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 12px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  transition: all var(--transition-speed);
+}
+
+/* Animación Shimmer para el Skeleton */
+@keyframes shimmer {
+  0% {
+    background-position: -468px 0;
+  }
+  100% {
+    background-position: 468px 0;
+  }
+}
+
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    var(--card-bg) 25%,
+    var(--bg-body) 50%,
+    var(--card-bg) 75%
+  );
+  background-size: 800px 100%;
+  animation: shimmer 2s infinite linear;
+  border-radius: 4px;
+  display: inline-block;
+}
+
+.skeleton-avatar {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+}
+.skeleton-text {
+  width: 120px;
+  height: 18px;
+}
+.skeleton-btn {
+  width: 80px;
+  height: 30px;
+}
+
+/* Corrección Global de Texto en Modo Oscuro */
+body.dark-mode,
+body.dark-mode h1,
+body.dark-mode h2,
+body.dark-mode h3,
+body.dark-mode h4,
+body.dark-mode h5,
+body.dark-mode h6,
+body.dark-mode p,
+body.dark-mode span,
+body.dark-mode a:not(.btn),
+body.dark-mode div,
+body.dark-mode strong,
+body.dark-mode label,
+body.dark-mode small,
+body.dark-mode .card-title,
+body.dark-mode .card-text,
+body.dark-mode .list-group-item,
+body.dark-mode .table td {
+  color: var(--text-main) !important;
+}
+
+body.dark-mode .list-group-item {
+  background-color: var(--card-bg);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+.table {
+  --bs-table-bg: transparent;
+  color: var(--text-main);
+}
+
+.table th {
+  color: var(--accent-primary) !important;
+  font-weight: 600 !important;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+}
+
+/* Diseño de filas tipo Card para la tabla de miembros */
+.card-row {
+  transition: background-color 0.2s;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+body.dark-mode .card-row {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.1);
+}
+
+button,
+.btn {
+  border-radius: 8px;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+footer {
+  background-color: var(--card-bg);
+  transition: background-color var(--transition-speed);
+}
+
+body.dark-mode footer {
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}

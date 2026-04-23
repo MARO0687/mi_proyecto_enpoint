@@ -1,0 +1,14 @@
+# Ignorar la carpeta de compilación local de Rust (la más pesada)
+**/target/
+target/
+
+# Ignorar archivos de control de versiones y configuración de editor
+.git/
+.gitignore
+.vscode/
+.devcontainer/
+
+# Ignorar archivos de entorno y scripts locales que no se usan en la imagen final
+.env
+*.sh
+README.md

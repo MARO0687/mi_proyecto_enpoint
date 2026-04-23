@@ -1,0 +1,73 @@
+{% extends "base.html" %} {% block title %}Miembros{% endblock %} {% block
+content %}
+<div class="container mt-4">
+  <h2 class="mb-4">Miembros de {{ org_name }}</h2>
+
+  <div id="error-container" class="alert alert-danger d-none"></div>
+
+  <div class="table-responsive" id="data-container">
+    <table class="table align-middle">
+      <thead>
+        <tr>
+          <th class="text-muted fw-normal border-0">Avatar</th>
+          <th class="text-muted fw-normal border-0">Usuario</th>
+          <th class="text-muted fw-normal border-0 text-end">Acción</th>
+        </tr>
+      </thead>
+      <tbody id="members-body">
+        <!-- Skeleton Rows (Se muestran por defecto) -->
+        {% for i in range(5) %}
+        <tr class="skeleton-row">
+          <td>
+            <div class="skeleton skeleton-avatar"></div>
+          </td>
+          <td><div class="skeleton skeleton-text"></div></td>
+          <td class="text-end">
+            <div class="skeleton skeleton-btn"></div>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", async () => {
+    const params = new URLSearchParams(window.location.search);
+    const org = params.get("org") || "{{ org_name }}";
+    const tbody = document.getElementById("members-body");
+    const errorContainer = document.getElementById("error-container");
+
+    try {
+      // El token ahora se toma de la sesión en el servidor de Flask
+      const response = await fetch(`/api/miembros?org=${org}`);
+      const data = await response.json();
+
+      if (data.error) throw new Error(data.error);
+
+      tbody.innerHTML = data
+        .map(
+          (member) => `
+        <tr class="card-row">
+          <td>
+            <img src="${member.avatar_url}" width="45" height="45" class="rounded-circle border-0 shadow-sm" />
+          </td>
+          <td class="fw-bold">${member.login}</td>
+          <td class="text-end">
+            <a href="${member.html_url}" target="_blank" class="btn btn-sm btn-light border">
+              Ver Perfil
+            </a>
+          </td>
+        </tr>
+      `,
+        )
+        .join("");
+    } catch (err) {
+      errorContainer.textContent = "Error: " + err.message;
+      errorContainer.classList.remove("d-none");
+      tbody.innerHTML = "";
+    }
+  });
+</script>
+{% endblock %}
